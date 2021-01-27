@@ -1,0 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee" version="8.0">
+    <context-root>@application.context-root@</context-root>
+</jboss-web>

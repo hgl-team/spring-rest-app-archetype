@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="spring-rest-app"
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>.idea/httpRequests</directory>
+      <includes>
+        <include>**/*.html</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>.idea</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>.idea/httpRequests</directory>
+      <includes>
+        <include>**/*.http</include>
+        <include>**/*.cookies</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>logs/2020-12</directory>
+      <includes>
+        <include>**/*.gz</include>
+        <include>**/*.log</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>.idea</directory>
+      <includes>
+        <include>**/*.gitignore</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>logs</directory>
+      <includes>
+        <include>**/*.log</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.gitignore</include>
+        <include>spring-rest-app.iml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  <modules>
+    <module id="${rootArtifactId}-model" dir="__rootArtifactId__-model" name="${rootArtifactId}-model">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-model.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-control" dir="__rootArtifactId__-control" name="${rootArtifactId}-control">
+      <fileSets>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-control.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+      <modules>
+        <module id="${rootArtifactId}-control-api" dir="__rootArtifactId__-control-api" name="${rootArtifactId}-control-api">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>spring-rest-app-control-api.iml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-control-implementation" dir="__rootArtifactId__-control-implementation" name="${rootArtifactId}-control-implementation">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>spring-rest-app-control-implementation.iml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+      </modules>
+    </module>
+    <module id="${rootArtifactId}-business" dir="__rootArtifactId__-business" name="${rootArtifactId}-business">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-business.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-adapter" dir="__rootArtifactId__-adapter" name="${rootArtifactId}-adapter">
+      <fileSets>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-adapter.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+      <modules>
+        <module id="${rootArtifactId}-adapter-rest" dir="__rootArtifactId__-adapter-rest" name="${rootArtifactId}-adapter-rest">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>spring-rest-app-adapter-rest.iml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+      </modules>
+    </module>
+    <module id="${rootArtifactId}-client-model" dir="__rootArtifactId__-client-model" name="${rootArtifactId}-client-model">
+      <fileSets>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-client-model.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-application" dir="__rootArtifactId__-application" name="${rootArtifactId}-application">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources-filtered</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources-filtered</directory>
+          <includes>
+            <include>**/*.yml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>spring-rest-app-application.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
+</archetype-descriptor>
