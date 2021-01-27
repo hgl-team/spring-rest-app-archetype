@@ -4,7 +4,7 @@
 
     <groupId>org.hglteam.archetypes</groupId>
     <artifactId>spring-rest-app-archetype</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>maven-archetype</packaging>
     <name>spring-rest-app-archetype</name>
     <description>Spring REST application archetype</description>
@@ -140,6 +140,6 @@
         <connection>${scm.connection}</connection>
         <url>${scm.url}</url>
         <developerConnection>${scm.developerConnection}</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.1</tag>
     </scm>
 </project>
