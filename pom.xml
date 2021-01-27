@@ -4,7 +4,7 @@
 
     <groupId>org.hglteam.archetypes</groupId>
     <artifactId>spring-rest-app-archetype</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>maven-archetype</packaging>
     <name>spring-rest-app-archetype</name>
     <description>Spring REST application archetype</description>
@@ -48,6 +48,17 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
@@ -129,6 +140,6 @@
         <connection>${scm.connection}</connection>
         <url>${scm.url}</url>
         <developerConnection>${scm.developerConnection}</developerConnection>
-        <tag>v1.0.0</tag>
+        <tag>v1.0.1</tag>
     </scm>
 </project>
