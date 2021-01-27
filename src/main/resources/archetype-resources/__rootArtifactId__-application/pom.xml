@@ -187,8 +187,8 @@
                 <configuration>
                     <overlays>
                         <overlay>
-                            <groupId>org.hglteam.archetypes</groupId>
-                            <artifactId>spring-rest-app-adapter-rest</artifactId>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}-adapter-rest</artifactId>
                         </overlay>
                     </overlays>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
