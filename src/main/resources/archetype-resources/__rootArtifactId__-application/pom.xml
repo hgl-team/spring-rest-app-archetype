@@ -102,9 +102,9 @@
         <!-- Platform configuration -->
 
         <dependency>
-            <groupId>com.github.jlhuerfanor</groupId>
+            <groupId>org.hglteam</groupId>
             <artifactId>remote-config-core</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
 
         <!-- Persistence -->
@@ -210,6 +210,9 @@
     <profiles>
         <profile>
             <id>springboot</id>
+            <properties>
+                <config.jpa.provided>false</config.jpa.provided>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.springframework.boot</groupId>

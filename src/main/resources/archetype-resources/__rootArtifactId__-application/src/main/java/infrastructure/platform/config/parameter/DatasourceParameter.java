@@ -22,6 +22,7 @@ public class DatasourceParameter implements Serializable {
     private String password;
     private String jndiName;
     private boolean isJndi;
+    private boolean jpaProvided;
 
     @Override
     public String toString() {
@@ -31,7 +32,8 @@ public class DatasourceParameter implements Serializable {
                 ", username='" + username + '${symbol_escape}'' +
                 ", password='" + password + '${symbol_escape}'' +
                 ", jndiName='" + jndiName + '${symbol_escape}'' +
-                ", isJndi=" + isJndi +
+                ", isJndi=" + isJndi + '${symbol_escape}'' +
+                ", jpaProvided=" + jpaProvided +
                 '}';
     }
 }

@@ -11,13 +11,15 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+        <database.name>${databaseName}</database.name>
+        <database.schema.default>${databaseSchema}</database.schema.default>
         <application.context-root>/wap/${project.parent.artifactId}</application.context-root>
+        <config.jpa.provided>true</config.jpa.provided>
         <cloud.config.application>${project.parent.artifactId}</cloud.config.application>
         <cloud.config.profile>local</cloud.config.profile>
         <cloud.config.label>latest</cloud.config.label>
-        <cloud.config.url>http://localhost:50400/wap/configuracion</cloud.config.url>
         <loggin.directory.base>.</loggin.directory.base>
+        <junit-jupiter.version>5.7.0</junit-jupiter.version>
     </properties>
 
     <dependencyManagement>
@@ -81,7 +83,7 @@
             <dependency>
                 <groupId>org.hglteam</groupId>
                 <artifactId>convertion-bom</artifactId>
-                <version>1.0.3</version>
+                <version>1.0.5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -124,5 +126,31 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M4</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${junit-jupiter.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
