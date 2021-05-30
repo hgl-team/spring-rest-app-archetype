@@ -43,4 +43,21 @@ public class MvcConfiguration implements WebMvcConfigurer {
                     .allowedHeaders(mapping.getHeaders().toArray(String[]::new));
         }
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/ui/**/*.*")
+                .addResourceLocations("classpath:/static/");
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/ui/index.html");
+        registry.addRedirectViewController("/ui/", "/ui/index.html");
+    }
+
+    @Bean
+    public InternalResourceViewResolver defaultViewResolver() {
+        return new InternalResourceViewResolver();
+    }
 }

@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* ----- Tema de la barra superior de navegacion -------------- */
+
+.nav-background {
+  background: ghostwhite;
+}
+.nav-title {
+  color: #015249;
+}
+
+.nav-text {
+  color: #015249; /* #D6CE15; */
+}
+
+.nav-text:hover {
+  color: #055c53; /* #D6CE15; */
+}
+
+/* ----- Tema de la barra lateral de navegacion --------------- */
+
+.sidenav-backgroud {
+  background: #1a5168;
+}
+
+.sidenav-expander {
+  color: ghostwhite;
+}
+
+.sidenav-expander:hover {
+  color: white;
+}
+
+.sidenav-sub-background {
+  background: #3c69b1;
+}
+
+.sidenav-text {
+  color: #ffffff; /* #D6CE15; */
+}
+
+.sidenav-text:hover {
+  color: lightgoldenrodyellow; /* #D6CE15; */
+}
+
+.sidenav-sub-text {
+  color: #ffffff; /* #D6CE15; */
+}
+
+.sidenav-sub-text:hover {
+  color: lightgoldenrodyellow; /* #D6CE15; */
+}
+
+/* ------------------------------------------------------------ */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-container {
+  z-index: 1050 !important;
+}

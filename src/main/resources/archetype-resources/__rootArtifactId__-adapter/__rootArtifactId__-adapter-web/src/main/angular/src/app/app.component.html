@@ -1,0 +1,12 @@
+<div *ngIf="user" class="d-flex flex-column min-vh-100 align-items-stretch">
+  <app-topnav></app-topnav>
+  <div class="d-flex flex-column flex-lg-row flex-grow-1">
+    <div class="d-flex flex-column sidenav-backgroud">
+      <app-sidenav></app-sidenav>
+    </div>
+
+    <div class="flex-grow-1 flex-fill">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

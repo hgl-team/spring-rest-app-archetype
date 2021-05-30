@@ -83,6 +83,19 @@
             </fileSet>
           </fileSets>
         </module>
+        <module id="${rootArtifactId}-adapter-web" dir="__rootArtifactId__-adapter-web" name="${rootArtifactId}-adapter-web">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8" packaged="true">
+              <directory>src/main/angular</directory>
+              <includes>
+                <include>**/*.*</include>
+                <include>**/.gitignore</include>
+                <include>**/.browserslistrc</include>
+                <include>**/.editorconfig</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
       </modules>
     </module>
     <module id="${rootArtifactId}-client-model" dir="__rootArtifactId__-client-model" name="${rootArtifactId}-client-model">

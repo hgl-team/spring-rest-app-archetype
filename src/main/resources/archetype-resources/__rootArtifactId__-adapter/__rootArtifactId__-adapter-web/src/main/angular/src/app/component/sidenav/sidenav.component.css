@@ -1,0 +1,36 @@
+.sidenav-container {
+}
+
+/* Override collapse behavior for sidenav compatibility */
+
+@media (min-width: 992px) {
+  .sidenav-container.collapse {
+    height: auto !important;
+  }
+
+  .sidenav-container.collapse.show {
+    width: 300px;
+    visibility: visible;
+  }
+
+  .sidenav-container:not(.show) {
+    display: unset;
+    visibility: hidden;
+    width: 0;
+  }
+
+  a[aria-expanded="false"]~.sidenav-container.collapsing {
+    width: 0;
+    transition: width 0.35s ease !important;
+  }
+
+  a[aria-expanded="true"]~.sidenav-container.collapsing {
+    width: 300px;
+    transition: width 0.35s ease !important;
+  }
+}
+
+.sidenav-sub-container {
+  padding-left: 15px;
+}
+

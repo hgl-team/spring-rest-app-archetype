@@ -1,0 +1,60 @@
+<div class="d-flex flex-column">
+  <!-- vertical toggler -->
+  <a id="menuToggler"
+     href="#collapseItemContainer" data-toggle="collapse" role="button"
+     class="align-self-start align-self-lg-end p-2">
+    <fa-icon [icon]="['fas', 'bars']" class="sidenav-expander" size="2x"></fa-icon>
+  </a>
+  <div id="collapseItemContainer" class="sidenav-container collapse">
+    <nav class="nav flex-column text-light">
+      <ng-template ngFor let-menu [ngForOf]="menus">
+        <!-- Link for routing -->
+        <a *ngIf="menu.menus.length == 0 && menu.operacion && menu.operacion.tipoOperacion == 'ENRUTAMIENTO'"
+           routerLink="{{menu.operacion.url}}"
+           data-toggle="tooltip"
+           title="{{menu.descripcion}}"
+           class="nav-link sidenav-text">
+          <fa-icon *ngIf="menu.icono" [icon]="['fas', menu.icono]"></fa-icon>
+          {{menu.nombre}}
+        </a>
+
+        <!-- Link for redirection -->
+        <a *ngIf="menu.menus.length == 0 && menu.operacion && menu.operacion.tipoOperacion == 'REDIRECCION'"
+           href="{{menu.operacion.url}}"
+           class="nav-link sidenav-text">
+          <fa-icon *ngIf="menu.icono" [icon]="['fas', menu.icono]"></fa-icon>
+          {{menu.nombre}}
+        </a>
+
+        <!-- Link for display sub-menu -->
+        <a *ngIf="menu.menus.length > 0"
+           href="#{{getMenuId(menu.nombre)}}"
+           data-toggle="collapse"
+           class="nav-link sidenav-text">
+          <fa-icon *ngIf="menu.icono" [icon]="['fas', menu.icono]"></fa-icon>
+          {{menu.nombre}}
+        </a>
+
+        <!-- Submenu -->
+        <div *ngIf="menu.menus.length > 0" id="{{getMenuId(menu.nombre)}}" class="nav-item collapse">
+          <nav class="nav flex-column sidenav-sub-container sidenav-sub-background">
+            <div class="nav-item" *ngFor="let subm of menu.menus">
+              <a *ngIf="subm.operacion.tipoOperacion == 'REDIRECCION'"
+                 class="nav-link sidenav-sub-text"
+                 href="{{subm.operacion.url}}">
+                {{subm.nombre}}
+              </a>
+
+              <a *ngIf="subm.operacion.tipoOperacion == 'ENRUTAMIENTO'"
+                 class="nav-link sidenav-sub-text"
+                 routerLink="{{subm.operacion.url}}">
+                {{subm.nombre}}
+              </a>
+            </div>
+
+          </nav>
+        </div>
+      </ng-template>
+    </nav>
+  </div>
+</div>
