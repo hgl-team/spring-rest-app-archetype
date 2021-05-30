@@ -26,7 +26,7 @@ public class RemoteConfiguration {
     }
 
     @Configuration
-    @Import({ com.github.jlhuerfanor.config.remote.RemoteConfiguration.class })
+    @Import({ org.hglteam.config.remote.RemoteConfiguration.class })
     public static class InstanceRemoteConfiguration {
     }
 }

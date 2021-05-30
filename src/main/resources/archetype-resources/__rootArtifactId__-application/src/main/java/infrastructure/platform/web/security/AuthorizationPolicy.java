@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.http.HttpMethod;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @SuperBuilder(toBuilder = true)
 public class AuthorizationPolicy {
     private Action action;
+    private HttpMethod method;
     private List<String> urls;
     private List<String> roles;
 

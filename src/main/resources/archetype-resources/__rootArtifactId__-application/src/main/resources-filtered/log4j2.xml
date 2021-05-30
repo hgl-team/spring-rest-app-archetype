@@ -2,26 +2,22 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration
-               strict="true"
+<Configuration strict="true"
                name="XMLConfigTest"
                packages="org.apache.logging.log4j.test">
     <Filter type="ThresholdFilter" level="trace"/>
-    <Properties>
-        <Property name="loggin.directory.base">@tomcat.catalina.base@</Property>
-    </Properties>
     <Appenders>
-        <Appender type="Console" target="SYSTEM_OUT" name="STDOUT">
-            <Layout type="PatternLayout" pattern="%style{%d{ISO8601}} %highlight{%-5level }[%style{%16t}{bright,blue}] %style{%-50C{1.}}{bright,yellow}: %msg%n%throwable"/>
-        </Appender>
-        <RollingFile name="RollingFile" fileName="${symbol_dollar}{loggin.directory.base}/logs/administracion-seguridad.log"
-                     filePattern="${symbol_dollar}{loggin.directory.base}/logs/${symbol_dollar}${symbol_dollar}{date:yyyy-MM}/administracion-seguridad-%d{MM-dd-yyyy}-%i.log.gz">
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-30.30C{1.} %-5level: %msg%n%throwable"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${symbol_dollar}{env:LOG_PATH:-${symbol_dollar}{sys:log.path:-/var/log}}/${rootArtifactId}.log"
+                     filePattern="${symbol_dollar}{env:LOG_PATH:-${symbol_dollar}{sys:log.path:-/var/log}}/history/${symbol_dollar}${symbol_dollar}{date:yyyy-MM}/${rootArtifactId}-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout>
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+                <Pattern>%d %-35.35C{1.} %-5level: [%7.7t] %m%n%throwable</Pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy />
-                <SizeBasedTriggeringPolicy size="250 MB"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
         </RollingFile>
     </Appenders>
@@ -30,8 +26,15 @@
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="RollingFile"/>
         </Root>
-<!--        <Logger name="org.springframework.security" level="TRACE">-->
-<!--            <AppenderRef ref="STDOUT"/>-->
-<!--        </Logger>-->
+        <!-- package logging -->
+        <Logger name="${package}" level="${symbol_dollar}{env:LOG_LEVEL:-${symbol_dollar}{sys:log.level:-INFO}}" additivity="false">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <!-- Log SQL statements -->
+        <Logger name="org.hibernate.SQL" level="${symbol_dollar}{env:LOG_SQL_LEVEL:-${symbol_dollar}{sys:log.sql.level:-INFO}}" additivity="false">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
     </Loggers>
 </Configuration>

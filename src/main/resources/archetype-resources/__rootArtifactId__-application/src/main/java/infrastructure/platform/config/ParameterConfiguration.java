@@ -31,7 +31,8 @@ public class ParameterConfiguration {
             @Value("${symbol_dollar}{application.datasource.username}") String username,
             @Value("${symbol_dollar}{application.datasource.password}") String password,
             @Value("${symbol_dollar}{application.datasource.is-jndi}") Boolean isJndi,
-            @Value("${symbol_dollar}{application.datasource.jndi-name}") String jndiName) {
+            @Value("${symbol_dollar}{application.datasource.jndi-name}") String jndiName,
+            @Value("${symbol_dollar}{config.jpa.provided}") Boolean jpaProvided) {
         return DatasourceParameter.builder()
                 .driverClassName(driverClassName)
                 .url(url)
@@ -39,6 +40,7 @@ public class ParameterConfiguration {
                 .password(password)
                 .isJndi(Boolean.TRUE.equals(isJndi))
                 .jndiName(jndiName)
+                .jpaProvided(Boolean.TRUE.equals(jpaProvided))
                 .build();
     }
 

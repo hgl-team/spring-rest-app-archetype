@@ -1,0 +1,26 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light nav-background">
+<!--  <a class="navbar-brand" routerLink="/">-->
+<!--    <img src="assets/logo-lujociclas.svg" style="width: 40px; height: 40px;">-->
+<!--  </a>-->
+  <ul class="navbar-nav mr-auto flex-row">
+    <li class="navbar-text">
+      <span class="text-uppercase nav-title font-weight-bold" style="font-size: 22px">M</span>
+      <span class="text-uppercase nav-title">orfeo</span>
+    </li>
+  </ul>
+
+  <div class="nav-item dropdown my-2 my-lg-2">
+    <a class="dropdown-toggle" href="#" id="usuarioNavbarDropdow" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+      <fa-icon [icon]="['fas','user']" class="nav-text" size="1x"></fa-icon>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right"  style="width: 200px" aria-labelledby="usuarioNavbarDropdow">
+      <div class="text-center d-flex flex-column align-items-center">
+        <img src="assets/user-svgrepo-com.svg" style="width: 60px; height: 60px;">
+        <span class="text-capitalize"><small>{{nombreUsuario}}</small></span>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item nav-text" (click)="this.logout()">Logout</a>
+    </div>
+  </div>
+</nav>

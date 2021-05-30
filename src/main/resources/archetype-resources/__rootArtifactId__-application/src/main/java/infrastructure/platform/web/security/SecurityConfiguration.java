@@ -6,6 +6,8 @@ package ${package}.infrastructure.platform.web.security;
 import ${package}.control.security.JwtTokenBasedSessionInspector;
 import ${package}.control.security.SessionInspector;
 import ${package}.infrastructure.platform.config.parameter.AuthorizationParameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.core.context.SecurityContext;
@@ -41,6 +44,7 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private static final Logger log = LoggerFactory.getLogger(SecurityConfiguration.class);
     private static final List<String> clients = Arrays.asList("keycloak", "google");
     private static final String ISSUER_URI_FORMAT = "spring.security.oauth2.client.provider.%s.issuer-uri";
     private static final String CLIENT_ID_FORMAT = "spring.security.oauth2.client.registration.%s.client-id";
@@ -95,29 +99,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout().logoutSuccessUrl("/home");
 
         for (var autorizacion : this.authorizationParameter.getPolicies()) {
+            log.debug("Security Policy: \n\tAction {}\n\tMethod: {}\n\tUrls: {}\n\tRoles: {}",
+                    autorizacion.getAction(),
+                    autorizacion.getMethod(),
+                    String.join(", ", autorizacion.getUrls()),
+                    String.join(", ", autorizacion.getRoles()));
+
+            ExpressionUrlAuthorizationConfigurer<?>.AuthorizedUrl authorizedUrl = Objects.nonNull(autorizacion.getMethod()) ?
+                    http.authorizeRequests()
+                            .antMatchers(autorizacion.getMethod(), autorizacion.getUrls().toArray(String[]::new)) :
+                    http.authorizeRequests()
+                            .antMatchers(autorizacion.getUrls().toArray(String[]::new));
+
             switch (autorizacion.getAction()) {
                 case ALLOW:
-                    http.authorizeRequests()
-                            .antMatchers(autorizacion.getUrls().toArray(String[]::new))
+                    authorizedUrl
                             .permitAll()
                             .and();
                     break;
                 case DEMAND_AUTHORITY:
                     if(!autorizacion.getRoles().isEmpty()) {
-                        http.authorizeRequests()
-                            .antMatchers(autorizacion.getUrls().toArray(String[]::new))
-                            .hasAnyAuthority(autorizacion.getRoles().toArray(String[]::new))
-                            .and();
+                        authorizedUrl
+                                .hasAnyAuthority(autorizacion.getRoles().toArray(String[]::new))
+                                .and();
                     } else {
-                        http.authorizeRequests()
-                                .antMatchers(autorizacion.getUrls().toArray(String[]::new))
+                        authorizedUrl
                                 .authenticated()
                                 .and();
                     }
                     break;
                 case DENY:
-                    http.authorizeRequests()
-                            .antMatchers(autorizacion.getUrls().toArray(String[]::new))
+                    authorizedUrl
                             .denyAll()
                             .and();
                     break;

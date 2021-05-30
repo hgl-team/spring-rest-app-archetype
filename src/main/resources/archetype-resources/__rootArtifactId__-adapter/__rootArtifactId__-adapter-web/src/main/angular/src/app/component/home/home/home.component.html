@@ -1,0 +1,11 @@
+<div class="d-flex flex-row mt-5 ml-5 mb-3">
+  <img src="assets/gears-gear-svgrepo-com.svg" style="width: 70px;">
+  <h2 class="align-self-center ml-3">Bienvenido a morfeo</h2>
+</div>
+<div *ngIf="this.mensajePagina" class="row">
+  <div class="col-2"></div>
+  <div class="col-8 alert alert-{{this.mensajePagina.tipo}}">
+    {{this.mensajePagina.mensaje}}
+  </div>
+  <div class="col-2"></div>
+</div>

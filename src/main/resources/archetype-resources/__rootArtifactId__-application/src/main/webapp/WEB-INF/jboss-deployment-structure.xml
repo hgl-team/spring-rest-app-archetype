@@ -10,6 +10,7 @@
             <subsystem name="jpa"/>
             <subsystem name="jsf"/>
             <subsystem name="transactions"/>
+            <subsystem name="logging"/>
         </exclude-subsystems>
         <exclusions>
             <module name="org.jboss.as.weld"/>
@@ -17,6 +18,7 @@
             <module name="org.jboss.as.jsf"/>
             <module name="org.jboss.as.transactions"/>
             <module name="javaee.api"/>
+            <module name="org.apache.logging.log4j" />
         </exclusions>
     </deployment>
 </jboss-deployment-structure>

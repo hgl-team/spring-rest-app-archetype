@@ -12,3 +12,5 @@ config:
       max-interval: 10000
       multiplier: 1.6
       max-attemps: 5
+  jpa:
+    provided: @config.jpa.provided@
